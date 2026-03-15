@@ -76,6 +76,15 @@ cp "$APPDIR/usr/share/applications/codescan.desktop" "$APPDIR/codescan.desktop"
 if [[ -f "$SYRAG_LOGO" ]]; then
 	cp "$SYRAG_LOGO" "$APPDIR/usr/share/icons/hicolor/256x256/apps/codescan.png"
 	cp "$SYRAG_LOGO" "$APPDIR/codescan.png"
+else
+	cat > "$APPDIR/codescan.svg" << 'EOF'
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <rect width="256" height="256" rx="32" fill="#0f172a"/>
+  <path d="M68 88h120v20H68zm0 40h120v20H68zm0 40h80v20H68z" fill="#22d3ee"/>
+  <circle cx="180" cy="178" r="20" fill="#22d3ee"/>
+</svg>
+EOF
+	cp "$APPDIR/codescan.svg" "$APPDIR/usr/share/icons/hicolor/256x256/apps/codescan.svg"
 fi
 
 echo "AppDir prepared at: $APPDIR"
