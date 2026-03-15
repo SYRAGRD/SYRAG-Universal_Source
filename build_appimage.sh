@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 APPDIR="$ROOT_DIR/AppDir"
+SYRAG_RD_LOGO_PNG="$ROOT_DIR/assets/SYRAGRD2.png"
 SYRAG_RD_LOGO_SVG="$ROOT_DIR/assets/SYRAGRD2.svg"
 SYRAG_LOGO_REPO_PNG="$ROOT_DIR/assets/syrag.png"
 SYRAG_LOGO_LEGACY_PNG="$ROOT_DIR/../../syrag.png"
@@ -75,7 +76,10 @@ EOF
 
 cp "$APPDIR/usr/share/applications/codescan.desktop" "$APPDIR/codescan.desktop"
 
-if [[ -f "$SYRAG_RD_LOGO_SVG" ]]; then
+if [[ -f "$SYRAG_RD_LOGO_PNG" ]]; then
+	cp "$SYRAG_RD_LOGO_PNG" "$APPDIR/usr/share/icons/hicolor/256x256/apps/codescan.png"
+	cp "$SYRAG_RD_LOGO_PNG" "$APPDIR/codescan.png"
+elif [[ -f "$SYRAG_RD_LOGO_SVG" ]]; then
 	cp "$SYRAG_RD_LOGO_SVG" "$APPDIR/usr/share/icons/hicolor/256x256/apps/codescan.svg"
 	cp "$SYRAG_RD_LOGO_SVG" "$APPDIR/codescan.svg"
 elif [[ -f "$SYRAG_LOGO_REPO_PNG" ]]; then
