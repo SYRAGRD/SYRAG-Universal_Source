@@ -24,7 +24,11 @@ else
 fi
 
 printf "[3/5] Building AppImage...\n"
-ARCH=x86_64 "$APPIMAGE_TOOL_BIN" "$ROOT_DIR/AppDir" "$ROOT_DIR/$APPIMAGE_NAME"
+if [[ "$APPIMAGE_TOOL_BIN" == *.AppImage ]]; then
+  APPIMAGE_EXTRACT_AND_RUN=1 ARCH=x86_64 "$APPIMAGE_TOOL_BIN" "$ROOT_DIR/AppDir" "$ROOT_DIR/$APPIMAGE_NAME"
+else
+  ARCH=x86_64 "$APPIMAGE_TOOL_BIN" "$ROOT_DIR/AppDir" "$ROOT_DIR/$APPIMAGE_NAME"
+fi
 
 printf "[4/5] Generating checksum...\n"
 sha256sum "$ROOT_DIR/$APPIMAGE_NAME" > "$ROOT_DIR/$APPIMAGE_NAME.sha256"
