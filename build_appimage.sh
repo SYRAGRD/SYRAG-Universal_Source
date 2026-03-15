@@ -3,7 +3,9 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 APPDIR="$ROOT_DIR/AppDir"
-SYRAG_LOGO="$ROOT_DIR/../../syrag.png"
+SYRAG_RD_LOGO_SVG="$ROOT_DIR/assets/SYRAGRD2.svg"
+SYRAG_LOGO_REPO_PNG="$ROOT_DIR/assets/syrag.png"
+SYRAG_LOGO_LEGACY_PNG="$ROOT_DIR/../../syrag.png"
 PAYLOAD_DIR="$APPDIR/usr/share/codescan"
 
 mkdir -p "$APPDIR/usr/bin"
@@ -73,9 +75,15 @@ EOF
 
 cp "$APPDIR/usr/share/applications/codescan.desktop" "$APPDIR/codescan.desktop"
 
-if [[ -f "$SYRAG_LOGO" ]]; then
-	cp "$SYRAG_LOGO" "$APPDIR/usr/share/icons/hicolor/256x256/apps/codescan.png"
-	cp "$SYRAG_LOGO" "$APPDIR/codescan.png"
+if [[ -f "$SYRAG_RD_LOGO_SVG" ]]; then
+	cp "$SYRAG_RD_LOGO_SVG" "$APPDIR/usr/share/icons/hicolor/256x256/apps/codescan.svg"
+	cp "$SYRAG_RD_LOGO_SVG" "$APPDIR/codescan.svg"
+elif [[ -f "$SYRAG_LOGO_REPO_PNG" ]]; then
+	cp "$SYRAG_LOGO_REPO_PNG" "$APPDIR/usr/share/icons/hicolor/256x256/apps/codescan.png"
+	cp "$SYRAG_LOGO_REPO_PNG" "$APPDIR/codescan.png"
+elif [[ -f "$SYRAG_LOGO_LEGACY_PNG" ]]; then
+	cp "$SYRAG_LOGO_LEGACY_PNG" "$APPDIR/usr/share/icons/hicolor/256x256/apps/codescan.png"
+	cp "$SYRAG_LOGO_LEGACY_PNG" "$APPDIR/codescan.png"
 else
 	cat > "$APPDIR/codescan.svg" << 'EOF'
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
