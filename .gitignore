@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Build artifacts
+AppDir/
+appimagetool.AppImage
+*.AppImage
+*.sha256
+
+# Config secrets (keep only example)
+config/config.json
+
+# Sync bundle (redundant copy of repo contents)
+repository-ready/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

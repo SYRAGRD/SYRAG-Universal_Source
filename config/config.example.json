@@ -1,0 +1,54 @@
+{
+  "ui": {
+    "theme": "dark",
+    "window": {
+      "width": 1600,
+      "height": 900
+    }
+  },
+  "scan": {
+    "default_extensions": [".py", ".js", ".ts", ".java", ".go", ".rs", ".cpp", ".c", ".php", ".rb"],
+    "max_source_chars": 8000
+  },
+  "self_test": {
+    "llm_timeout_s": 45
+  },
+  "llm": {
+    "default_provider": "ollama",
+    "providers": {
+      "ollama": {
+        "enabled": true,
+        "base_url": "http://localhost:11434",
+        "model": "llama3.1:8b",
+        "timeout_s": 90,
+        "num_predict": 256,
+        "num_ctx": 3072
+      },
+      "openrouter": {
+        "enabled": false,
+        "base_url": "https://openrouter.ai/api/v1",
+        "api_key_env": "OPENROUTER_API_KEY",
+        "model": "openai/gpt-4o-mini"
+      },
+      "openai_compatible": {
+        "enabled": false,
+        "base_url": "https://api.example.com/v1",
+        "api_key_env": "OPENAI_API_KEY",
+        "model": "gpt-4o-mini"
+      }
+    }
+  },
+  "anchoring": {
+    "enabled": true,
+    "providers": {
+      "pinata": {
+        "enabled": false,
+        "jwt_env": "PINATA_JWT"
+      },
+      "ots": {
+        "enabled": true,
+        "calendar": "https://alice.btc.calendar.opentimestamps.org"
+      }
+    }
+  }
+}
